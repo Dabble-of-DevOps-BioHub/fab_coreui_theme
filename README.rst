@@ -243,8 +243,8 @@ Credits
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
-.. _`Flask`: https://flask.palletsprojects.com/en/2.0.x/blueprints/#templates
-.. _`FlaskAppbuilder` https://flask-appbuilder.readthedocs.io/en/latest/templates.html
-.. _`CoreUI`: https://coreui.io/
-.. _`Cookiecutter`: https://github.com/audreyr/cookiecutter
+.. _Flask: https://flask.palletsprojects.com/en/2.0.x/blueprints/#templates
+.. _FlaskAppbuilder: https://flask-appbuilder.readthedocs.io/en/latest/templates.html
+.. _CoreUI: https://coreui.io/
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
