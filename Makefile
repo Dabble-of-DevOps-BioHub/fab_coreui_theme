@@ -84,14 +84,14 @@ npm-install:
 
 dist-frontend:
 	# TODO this should included in the javascript build
+	# <use xlink:href="{{url_for('coreui_theme.static', filename='coreui/node_modules/@coreui/icons/sprites/free.svg')}}#cil-speedometer"></use>
+
 	cp fab_coreui_theme/static/coreui/node_modules/@coreui/coreui/dist/css/* fab_coreui_theme/static/coreui/css/ 
 	cp fab_coreui_theme/static/coreui/node_modules/@coreui/coreui/dist/js/* fab_coreui_theme/static/coreui/js/ 
-	# <use xlink:href="{{url_for('coreui_theme.static', filename='coreui/node_modules/@coreui/icons/sprites/free.svg')}}#cil-speedometer"></use>
 	cp fab_coreui_theme/static/coreui/node_modules/@coreui/icons/sprites/* fab_coreui_theme/static/coreui/assets/icons/sprites/
 	cp fab_coreui_theme/static/coreui/node_modules/@coreui/icons/js/svgxuse.min.js fab_coreui_theme/static/coreui/js/ 
 
 dist: clean ## builds source and wheel package
-	$(MAKE) dist-frontend
 	python setup.py sdist
 	python setup.py bdist_wheel
 	ls -l dist
