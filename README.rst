@@ -46,7 +46,6 @@ Make sure the FlaskAppbuilder is used. If you used the fab cli to initialize the
 	from . import views  # noqa
 
 
-
 This registers the CoreUI Flask_ Blueprint. (Shown here for reference) 
 
 .. code-block:: python
