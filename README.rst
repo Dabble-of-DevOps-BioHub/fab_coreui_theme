@@ -46,7 +46,7 @@ Make sure the FlaskAppbuilder is used. If you used the fab cli to initialize the
 	from . import views  # noqa
 
 
-This registers the CoreUI Flask_ Blueprint. (Shown here for reference) 
+This registers the CoreUI Flask_ Blueprint. (This is only shown here for reference.) 
 
 .. code-block:: python
 
@@ -66,8 +66,7 @@ This registers the CoreUI Flask_ Blueprint. (Shown here for reference)
 	)
 
 
-Then in  your HTML templates you can bring in the static files relative to `static/coreui`  - 
-
+Then in  your HTML templates you can bring in the static files relative to `static`  - 
 
 .. code-block:: python
 
@@ -80,7 +79,7 @@ Example Base View
 .. code-block:: python
 
 	from flask_appbuilder.models.sqla.interface import SQLAInterface
-	from fab_coreui_theme.theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
+	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
 
 	# Create a base view that inherits from CoreUIBaseView
 	class MyView(CoreUIBaseView):
@@ -107,7 +106,7 @@ Example Form View
 	from flask_babel import lazy_gettext
 	from wtforms import StringField
 	from wtforms.validators import DataRequired
-	from fab_coreui_theme.theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
+	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
 
 
 	# Declare the Form
@@ -146,7 +145,7 @@ Example Model View
 .. code-block:: python
 
 	from flask_appbuilder.models.sqla.interface import SQLAInterface
-	from fab_coreui_theme.theme import CoreUIModelView
+	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
 
 
 	class ProductModelView(CoreUIModelView):
@@ -158,10 +157,16 @@ Example Model View
 
 
 Extending
-^^^^^^^^^^^^^^
+-----------------
+
+If you see something you don't like you can customize it by overriding the blocks in the templates.
+
+Customization - Flask AppBuilder - Server Side 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+See the `Flask AppBuilder docs on Customization <https://flask-appbuilder.readthedocs.io/en/latest/templates.html#>`_ to customize the theme. You can fork this project, or create a new project that overrides blocks and templates.
 
 In your app create a `templates/mytheme/index.html` file.
-
 
 Override a block entirely - 
 
@@ -186,18 +191,20 @@ Extend a block -
 
 See the `fab_coreui_theme/templates/coreui/init.html` for the menus, breadcrumbs, and sidebars.
 
-Menus
-^^^^^^^
+Please note that menus are not implemented the way they are in FlaskAppbuilder and registering a view does not populate the menus.
 
-Please note that menus are not implemented the way they are in FlaskAppbuilder. I wanted more control over the menu.  
+Further Customization - CoreUI - Front End
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Further Customization
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Some relevant docs:
 
-See the `Flask AppBuilder docs on Customization <https://flask-appbuilder.readthedocs.io/en/latest/templates.html#>`_ to customize the theme.
+- `CoreUI Docs <https://coreui.io/docs/getting-started/introduction/>`_
+- `Theming <https://coreui.io/docs/getting-started/theming/>`_
+- `Build Tools <https://coreui.io/docs/getting-started/build-tools/>`_ 
+- `Web Pack <https://coreui.io/docs/getting-started/webpack/>`_
+- `CoreUI Layout <https://coreui.io/docs/layout/overview/>`_
+- `CoreUI Icons <https://icons.coreui.io/icons/>`_
 
-Front End Development
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 Install the javascript node_modules.
 
@@ -209,7 +216,7 @@ Install the javascript node_modules.
 
 	# or use the MakeFile - make npm-install
 
-If this command gives you trouble try removing the package-lock.json file.
+If this command gives you trouble try removing the package-lock.json and deleting the node_modules folder.
 
 Then you can reference the js and css files as:
 
@@ -236,15 +243,14 @@ Features
 * CoreUI Theme - Flask AppBuilder ModelView 
 * CoreUI Theme - Flask AppBuilder SimpleFormView
 
-
-
 Credits
 -------
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template. It makes use of Flask AppBuilder and CoreUI.
 
 .. _Flask: https://flask.palletsprojects.com/en/2.0.x/blueprints/#templates
 .. _FlaskAppbuilder: https://flask-appbuilder.readthedocs.io/en/latest/templates.html
 .. _CoreUI: https://coreui.io/
+.. _CoreUIIcons: https://icons.coreui.io/icons/
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
