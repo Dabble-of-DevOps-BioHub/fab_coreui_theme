@@ -10,7 +10,7 @@ recursive-exclude * node_modules
 recursive-exclude * *.py[co]
 
 recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
-recursive-include fab_coreui_theme/templates *html 
+recursive-include fab_coreui_theme/templates * 
 recursive-include fab_coreui_theme/static/coreui/assets *
 recursive-include fab_coreui_theme/static/coreui/css  *
 recursive-include fab_coreui_theme/static/coreui/img *
