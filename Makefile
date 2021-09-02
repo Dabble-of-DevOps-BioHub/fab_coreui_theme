@@ -47,6 +47,9 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
+clean-js:
+	rm -rf fab_coreui_theme/static/node_modules
+
 lint/flake8: ## check style with flake8
 	flake8 fab_coreui_theme tests
 
@@ -92,6 +95,7 @@ dist-frontend:
 	cp fab_coreui_theme/static/coreui/node_modules/@coreui/icons/js/svgxuse.min.js fab_coreui_theme/static/coreui/js/ 
 
 dist: clean ## builds source and wheel package
+	# clean-js
 	python setup.py sdist
 	python setup.py bdist_wheel
 	ls -l dist

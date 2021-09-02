@@ -3,6 +3,7 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+import pkg_resources
 import versioneer
 
 with open('README.rst') as readme_file:
