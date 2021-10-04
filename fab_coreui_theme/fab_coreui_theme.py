@@ -17,8 +17,10 @@ TEMPLATE_FOLDER = os.path.join(os.path.dirname(__file__), "templates")
 STATIC_FOLDER = os.path.join(os.path.dirname(__file__), "static")
 STATIC_URL_PATH = "/static/coreui"
 
+
 # Use the Flask Blueprint to create an appized app and setup our routing
 # https://flask.palletsprojects.com/en/2.0.x/blueprints/#templates
+# You must register this blueprint on your app!
 
 coreui_bp = Blueprint(
     "coreui_theme",

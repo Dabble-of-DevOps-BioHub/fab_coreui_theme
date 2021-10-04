@@ -14,12 +14,39 @@ This theme is still *very much* a WIP. If you'd like to use it take a look at th
 Usage
 ------
 
-This theme is meant to be with used with FlaskAppbuilder_. Here is an example app. 
+This theme is meant to be with used with FlaskAppbuilder_. Just grab the coreui_bp from fab_coreui_theme and you're ready to use the views. Here is an example app.
+
+QuickStart
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+	from flask_appbuilder.models.sqla.interface import SQLAInterface
+	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
+	# Make sure you import your app and register the blueprint!
+	from .www import app
+	app.register_blueprint(coreui_bp)
+
+	# Create a base view that inherits from CoreUIBaseView
+	class MyView(CoreUIBaseView):
+
+		default_view = 'blank'
+		@expose('/blank')
+
+		@has_access
+		def blank(self):
+			return self.render_template(
+				'coreui/init.html'
+			)
+
+	# Register the view with AppBuilder
+	appbuilder.add_view(MyView, "My View", category='My View')
+
 
 Bootstrap the Flask App
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Make sure the FlaskAppbuilder is used. If you used the fab cli to initialize the project it should be in there somewhere. 
+Make sure the FlaskAppbuilder is used. If you used the fab cli to initialize the project it should be in there somewhere.
 
 .. code-block:: python
 
@@ -46,11 +73,11 @@ Make sure the FlaskAppbuilder is used. If you used the fab cli to initialize the
 	from . import views  # noqa
 
 
-This registers the CoreUI Flask_ Blueprint. (This is only shown here for reference.) 
+This registers the CoreUI Flask_ Blueprint. (This is only shown here for reference.)
 
 .. code-block:: python
 
-	# This is only shown for reference. 
+	# This is only shown for reference.
 	TEMPLATE_FOLDER = os.path.join(os.path.dirname(__file__), 'templates')
 	STATIC_FOLDER = os.path.join(os.path.dirname(__file__), 'static')
 	STATIC_URL_PATH = '/static/coreui'
@@ -66,7 +93,7 @@ This registers the CoreUI Flask_ Blueprint. (This is only shown here for referen
 	)
 
 
-Then in  your HTML templates you can bring in the static files relative to `static`  - 
+Then in  your HTML templates you can bring in the static files relative to `static`  -
 
 .. code-block:: python
 
@@ -80,6 +107,9 @@ Example Base View
 
 	from flask_appbuilder.models.sqla.interface import SQLAInterface
 	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
+	# Make sure you import your app and register the blueprint!
+	from .www import app
+	app.register_blueprint(coreui_bp)
 
 	# Create a base view that inherits from CoreUIBaseView
 	class MyView(CoreUIBaseView):
@@ -93,7 +123,7 @@ Example Base View
 				'coreui/init.html'
 			)
 
-	# Register the view with AppBuilder 
+	# Register the view with AppBuilder
 	appbuilder.add_view(MyView, "My View", category='My View')
 
 Example Form View
@@ -107,6 +137,9 @@ Example Form View
 	from wtforms import StringField
 	from wtforms.validators import DataRequired
 	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
+	# Make sure you import your app and register the blueprint!
+	from .www import app
+	app.register_blueprint(coreui_bp)
 
 
 	# Declare the Form
@@ -146,6 +179,9 @@ Example Model View
 
 	from flask_appbuilder.models.sqla.interface import SQLAInterface
 	from fab_coreui_theme.fab_coreui_theme import CoreUIBaseView, CoreUIModelView, CoreUISimpleFormView, coreui_bp
+	# Make sure you import your app and register the blueprint!
+	from .www import app
+	app.register_blueprint(coreui_bp)
 
 
 	class ProductModelView(CoreUIModelView):
@@ -161,16 +197,16 @@ Extending
 
 If you see something you don't like you can customize it by overriding the blocks in the templates.
 
-Customization - Flask AppBuilder - Server Side 
+Customization - Flask AppBuilder - Server Side
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 See the `Flask AppBuilder docs on Customization <https://flask-appbuilder.readthedocs.io/en/latest/templates.html#>`_ to customize the theme. You can fork this project, or create a new project that overrides blocks and templates.
 
 In your app create a `templates/mytheme/index.html` file.
 
-Override a block entirely - 
+Override a block entirely -
 
-.. code-block:: html 
+.. code-block:: html
 
 	{% extends "coreui/init.html" %}
 
@@ -178,9 +214,9 @@ Override a block entirely -
 		<h1>My content!</h1>
 	{% endblock %}
 
-Extend a block - 
+Extend a block -
 
-.. code-block:: html 
+.. code-block:: html
 
 	{% extends "coreui/init.html" %}
 
@@ -200,7 +236,7 @@ Some relevant docs:
 
 - `CoreUI Docs <https://coreui.io/docs/getting-started/introduction/>`_
 - `Theming <https://coreui.io/docs/getting-started/theming/>`_
-- `Build Tools <https://coreui.io/docs/getting-started/build-tools/>`_ 
+- `Build Tools <https://coreui.io/docs/getting-started/build-tools/>`_
 - `Web Pack <https://coreui.io/docs/getting-started/webpack/>`_
 - `CoreUI Layout <https://coreui.io/docs/layout/overview/>`_
 - `CoreUI Icons <https://icons.coreui.io/icons/>`_
@@ -208,7 +244,7 @@ Some relevant docs:
 
 Install the javascript node_modules.
 
-.. code-block:: bash 
+.. code-block:: bash
 
 	# Clone or fork the repo and clone it locally
 	cd fab_coreui_theme/coreui_theme/static
@@ -240,7 +276,7 @@ Features
 
 * CoreUI Theme - Flask Blueprint
 * CoreUI Theme - Flask AppBuilder BaseView
-* CoreUI Theme - Flask AppBuilder ModelView 
+* CoreUI Theme - Flask AppBuilder ModelView
 * CoreUI Theme - Flask AppBuilder SimpleFormView
 
 Credits
