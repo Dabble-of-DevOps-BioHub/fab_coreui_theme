@@ -1,4 +1,4 @@
-{% import 'appbuilder/baselib.html' as baselib with context %} 
+{% import 'appbuilder/baselib.html' as baselib with context %}
 {% if appbuilder%} {% set app_name = appbuilder.app_name %} {% endif %}
 
 <!DOCTYPE html>
@@ -14,10 +14,10 @@
     />
     <meta
       name="description"
-      content="Tiamet BioDeploy - Deploy all the Bioinformatics Related Things"
+      content="BioAnalyze - Analyze all the Bioinformatics Related Things"
     />
     <meta name="author" content="" />
-    <meta name="keyword" content="Tiamet BioHub" />
+    <meta name="keyword" content="BioAnalyze" />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta
       name="msapplication-TileImage"
@@ -25,7 +25,7 @@
     />
     <meta name="theme-color" content="#ffffff" />
     <title>{{title}}</title>
-    {% endblock %} 
+    {% endblock %}
 
     <!-- Begin Favicon -->
     {% block favicon %}
@@ -127,7 +127,7 @@
         rel="stylesheet"
       />
     </div>
-    {% endblock %} 
+    {% endblock %}
     {% block head_js %}
     <script src="{{url_for('appbuilder.static',filename='js/jquery-latest.js')}}"></script>
     <script src="{{url_for('appbuilder.static',filename='js/ab_filters.js')}}"></script>
@@ -137,6 +137,7 @@
   {% block body %}
   <body class="c-app">
     {% block sidebar %}
+    {% if include_sidebar %}
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
 
       {% block sidebar_branding %}
@@ -255,11 +256,14 @@
       <!-- End Sidebar -->
       <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>
+    {% endif %}
     {% endblock %}
 
     <div class="c-wrapper c-fixed-components">
 
       <!-- Begin Top Bar Toggle -->
+      {% block top_bar_toggle %}
+      {% if include_top_bar_toggle %}
       <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
         <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
           <svg class="c-icon c-icon-lg">
@@ -274,19 +278,24 @@
             <use xlink:href="{{url_for('coreui_theme.static', filename='coreui/assets/icons/sprites/free.svg')}}#cil-menu"></use>
           </svg>
         </button>
-        <!-- Begin Top Bar Toggle -->
+        {% endif %}
+        {% endblock %}
+        <!-- End Top Bar Toggle -->
 
         {% block top_menu %}
+        {% if include_top_menu %}
         <ul class="c-header-nav d-md-down-none">
           <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
           <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
           <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
         </ul>
+        {% endif %}
         {% endblock %}
         <!-- End Top Breadcrumbs -->
 
         <!-- Begin Account Menu -->
         {% block account_menu %}
+        {% if include_account_menu %}
         <ul class="c-header-nav ml-auto mr-4">
           <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
               <svg class="c-icon">
@@ -340,11 +349,13 @@
             </div>
           </li>
         </ul>
+        {% endif %}
         {% endblock %}
         <!-- End Account Menu -->
 
         <!-- Begin Breadcrumbs Menu -->
         {% block breadcrumbs_submenu %}
+        {% if include_breadcrumbs_submenu %}
         <div class="c-subheader px-3">
           <ol class="breadcrumb border-0 m-0">
             <li class="breadcrumb-item">Home</li>
@@ -352,6 +363,7 @@
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </div>
+        {% endif %}
         {% endblock %}
         <!-- End Breadcrumb Menu-->
       </header>
@@ -359,7 +371,7 @@
 
 
       <!-- Begin Body Content -->
-      {% block body_content %} 
+      {% block body_content %}
       <div class="c-body">
         <main class="c-main">
           <div class="container-fluid">
@@ -391,12 +403,12 @@
     </div>
 
      {% block tail_js %}
-    {% endblock %} 
+    {% endblock %}
     {% block add_tail_js %}
     <script src="{{url_for('coreui_theme.static',filename='coreui/js/coreui.bundle.min.js')}}"></script>
     <script src="{{url_for('coreui_theme.static',filename='coreui/node_modules/@coreui/icons/js/svgxuse.min.js')}}"></script>
-    {% endblock %} 
-    {% block tail %} 
+    {% endblock %}
+    {% block tail %}
     {% endblock %}
   </body>
   {% endblock %}
